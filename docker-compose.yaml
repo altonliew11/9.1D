@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  calc:
+    build: ./calc_microservice
+    ports:
+      - 3001:3001
+    networks:
+      - myNetwork
+
+  request:
+    depends_on:
+      - calc
+    build: ./request_microservice
+    ports:
+      - 3002:3002
+    networks:
+      - myNetwork
+
+networks:
+  myNetwork:
+    external: true
+
+
+
